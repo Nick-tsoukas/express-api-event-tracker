@@ -52,7 +52,7 @@ function cleanData(data) {
             title: event.title,
             time: new Date(date).toDateString(),
             type: event.categories[0].title,
-            location: coordinates
+            location: coordinates.reverse()
         }
     });
     return eventObject;
