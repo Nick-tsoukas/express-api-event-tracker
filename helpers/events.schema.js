@@ -2,7 +2,6 @@ let EventSchema = {
     "Wildfires": {
         count: 0,
         events: [],
-
     },
     "Drought": {
         count: 0,
@@ -41,6 +40,13 @@ let EventSchema = {
         count: 0,
         events: []
     },
+}
+
+let event = {
+    type: String,
+    count: Number,
+    events: [],
+    comments: []
 }
 
 module.exports = EventSchema;

@@ -11,26 +11,31 @@ const GEO_KEY = process.env.GEO_KEY;
 const sources = require('./helpers/sources');
 const EventSchema = require('./helpers/events.schema');
 const categoriesURL = `https://eonet.sci.gsfc.nasa.gov/api/v2.1/categories?api_key=${process.env.API_KEY}`
-const eURL = `https://eonet.sci.gsfc.nasa.gov/api/v2.1/events?api_key=${process.env.API_KEY}&limit=100&source=${sources}`;
+const eURL = `https://eonet.sci.gsfc.nasa.gov/api/v2.1/events?api_key=${process.env.API_KEY}&limit=10&source=${sources}`;
 const sourceURL = `https://eonet.sci.gsfc.nasa.gov/api/v2.1/sources?api_key${process.env.API_KEY}`;
-const router = express.Router();
+
+// routes 
+
 const eventRoutes = require('./routes/events');
+const commentsRoutes = require('./routes/comments');
 const userRoutes = require('./routes/users');
 const indexRoutes = require('./routes/index');
 
-mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
+mongoose.connect('mongodb://127.0.0.1:27017/nasa_data', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false
 });
 
-app.use('/events', eventRoutes);
-app.use('/users', userRoutes);
-app.use(indexRoutes);
+
 
 app.use(cors());
 
-
+// routes config
+app.use('/events', eventRoutes);
+app.use('/users', userRoutes);
+app.use('/comments', commentsRoutes);
+app.use(indexRoutes);
 
 app.listen((port) , (err, res) => {
     console.log('The server is now listening');
