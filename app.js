@@ -11,7 +11,7 @@ const GEO_KEY = process.env.GEO_KEY;
 const sources = require('./helpers/sources');
 const EventSchema = require('./helpers/events.schema');
 const categoriesURL = `https://eonet.sci.gsfc.nasa.gov/api/v2.1/categories?api_key=${process.env.API_KEY}`
-const eURL = `https://eonet.sci.gsfc.nasa.gov/api/v2.1/events?api_key=${process.env.API_KEY}&limit=10&source=${sources}`;
+const eURL = `https://eonet.sci.gsfc.nasa.gov/api/v2.1/events?api_key=${process.env.API_KEY}&limit=100&status=closed&source=${sources}`;
 const sourceURL = `https://eonet.sci.gsfc.nasa.gov/api/v2.1/sources?api_key${process.env.API_KEY}`;
 
 // routes 

@@ -13,7 +13,17 @@ router.patch('/edit', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  
+  const user = new User({
+      name: 'nick',
+      age: 33
+  });
+
+  user.save().then((user) => {
+      res.send(user);
+  })
+  .catch((err) => {
+      res.send(err);
+  })
 });
 
 module.exports = router;

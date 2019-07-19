@@ -2,13 +2,20 @@ const mongoose = require('mongoose');
 const commentSchema = require('./comments');
 
 const eventSchema = new mongoose.Schema({
-    eventId: String,
-    type: String,
+    eventId: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    typeEvent: {
+        type: String,
+    },
     title: String,
     description: String,
     comments: [commentSchema],
     coordinates: Array,
-    date: Date
+    date: Date,
+    createdAt: Date
 });
 
 const Event = mongoose.model("Event", eventSchema);
