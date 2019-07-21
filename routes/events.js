@@ -1,6 +1,8 @@
 require('dotenv').config();
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Event = require('../models/events');
+const _ = require('lodash');
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
@@ -28,13 +30,24 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+router.get('/type/:type', async (req, res, next) => {
+    try {
+        const events = await Event.find({type: req.params.type});
+        res.send(events);
+    } catch(e) {
+        res.send(e);
+    }
+})
+
 router.get('/test', async (req, res, next) => {
+   
 
 })
 
 
 // The build route will get new events from the api call and save them to the database ... if they don't already exist
 router.get('/build', async (req, res, next) => {
+    // chceks to see if there are new events that need to be saved to the database ... callback hello and will try and refactor 
     // start of working function ===========================
     axios.get(eURL).then((response) => {
             return response.data.events;

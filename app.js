@@ -1,4 +1,5 @@
 require('dotenv').config();
+const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -31,6 +32,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/nasa_data', {
 
 app.use(cors());
 
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
 // routes config
 app.use('/events', eventRoutes);
 app.use('/users', userRoutes);
